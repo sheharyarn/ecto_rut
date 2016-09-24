@@ -1,0 +1,2 @@
+defmodule EctoRut do
+end
