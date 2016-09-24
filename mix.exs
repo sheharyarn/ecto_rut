@@ -1,32 +1,38 @@
 defmodule EctoRut.Mixfile do
   use Mix.Project
 
+  @version "1.0.0-alpha"
+
   def project do
     [app: :ecto_rut,
-     version: "1.0.0-alpha",
+     version: @version,
      elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
+     description: description(),
+     package: package(),
      deps: deps()]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :ecto]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:ecto, "~> 2.0.0"}]
+  end
+
+  defp description do
+    """
+    Ecto Model shortcuts to make your life easier! 🎉
+    """
+  end
+
+  defp package do
+    [
+      name: :ecto_rut,
+      maintainers: ["Sheharyar Naseer"],
+      licenses: ["MIT"],
+      files: ~w(mix.exs lib README.md),
+      links: %{"Github" => "https://github.com/sheharyarn/ecto_rut"}
+    ]
   end
 end
