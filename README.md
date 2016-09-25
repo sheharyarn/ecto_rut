@@ -81,6 +81,24 @@ Post.delete(bad_post)
 
 
 
+## Todo
+
+ - Write Tests
+
+ - Write Documentation
+
+ - Cover all main `Ecto.Repo` methods
+
+ - Introduce new wrapper methods that accept direct arguments
+
+    ```elixir
+    # Examples
+    Post.create title: "Another Post", category: "Ramblings"
+    Post.delete_by_id(3)
+    ```
+
+
+
 ## Contributing
 
 1. [Fork the Project][2]
