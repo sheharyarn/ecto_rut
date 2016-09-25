@@ -15,7 +15,7 @@ Add `:ecto_rut` as a dependency in your mix.exs file:
 ```elixir
 defp deps do
   [
-    {:ecto_rut, "~> 1.0"}
+    {:ecto_rut, "~> 1.0.1"}
   ]
 end
 ```
@@ -77,7 +77,7 @@ Post.get(2)
 
 # Other available methods:
 
-Post.insert(%Post{title: "awesome_post"})
+Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 Post.delete(bad_post)
 
@@ -88,31 +88,21 @@ All methods (except `all/0`) also have their bang versions available, i.e. `get!
 
 
 
-## Todo
+## Roadmap
 
  - Write Tests
-
  - Write Documentation
-
  - Cover all main `Ecto.Repo` methods
-
- - Introduce new wrapper methods that accept direct arguments
-
-    ```elixir
-    # Examples
-    Post.create title: "Another Post", category: "Ramblings"
-    Post.delete_by_id(3)
-    ```
+ - Introduce new wrapper methods that accept direct arguments (Such as `Post.delete_by_id(3)`)
 
 
 
 ## Contributing
 
-1. [Fork the Project][2]
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+ - [Fork][2], Enhance, Send PR
+ - Lock issues with any bugs or feature requests
+ - Implement something from Roadmap
+ - Spread the word
 
 
 
