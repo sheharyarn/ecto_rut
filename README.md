@@ -90,10 +90,11 @@ All methods (except `all/0`) also have their bang versions available, i.e. `get!
 
 ## Roadmap
 
- - Write Tests
- - Write Documentation
- - Cover all main `Ecto.Repo` methods
- - Introduce new wrapper methods that accept direct arguments (Such as `Post.delete_by_id(3)`)
+ - [ ] Write Tests
+ - [ ] Write Documentation
+ - [ ] Cover all main `Ecto.Repo` methods
+ - [ ] Allow explicitly passing Application and Repo modules to the `use Ecto.Rut` statement
+ - [ ] Introduce new wrapper methods that accept direct arguments (Such as `Post.delete_by_id(3)`)
 
 
 
