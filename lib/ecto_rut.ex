@@ -14,6 +14,14 @@ defmodule Ecto.Rut do
         call(:get!, [__MODULE__, id, opts])
       end
 
+      def get_by(clauses, opts \\ []) do
+        call(:get_by, [__MODULE__, clauses, opts])
+      end
+
+      def get_by!(clauses, opts \\ []) do
+        call(:get_by!, [__MODULE__, clauses, opts])
+      end
+
       def insert(struct, opts \\ []) do
         call(:insert, [struct, opts])
       end
