@@ -15,7 +15,7 @@ Add `:ecto_rut` as a dependency in your mix.exs file:
 ```elixir
 defp deps do
   [
-    {:ecto_rut, "~> 1.0.0-alpha"}
+    {:ecto_rut, "~> 1.0"}
   ]
 end
 ```
@@ -34,14 +34,14 @@ in `web/web.ex`:
 ```elixir
 # web/web.ex
 
-  def model do
-    quote do
-      use Ecto.Schema
-      use Ecto.Rut
+def model do
+  quote do
+    use Ecto.Schema
+    use Ecto.Rut
 
-      # Other stuff...
-    end
+    # Other stuff...
   end
+end
 ```
 
 That's it! `Ecto.Rut` will automatically be loaded in all of your models. You can now relax!
@@ -74,10 +74,17 @@ Post.all
 Post.get(2)
 # instead of YourApp.Repo.get(Post, 2)
 
+
 # Other available methods:
+
 Post.insert(%Post{title: "awesome_post"})
+
 Post.delete(bad_post)
+
+Post.get_by(category: "elixir")
 ```
+
+All methods (except `all/0`) also have their bang versions available, i.e. `get!/1`.
 
 
 
