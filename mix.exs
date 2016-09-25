@@ -1,7 +1,7 @@
 defmodule Ecto.Rut.Mixfile do
   use Mix.Project
 
-  @version "1.0.0-alpha"
+  @version "1.0.0"
 
   def project do
     [app: :ecto_rut,
