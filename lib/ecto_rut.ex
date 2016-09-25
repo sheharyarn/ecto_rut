@@ -1,33 +1,26 @@
 defmodule Ecto.Rut do
   defmacro __using__(_) do
     quote do
+      @module __MODULE__
 
       def all(opts \\ []) do
-        call(:all, [__MODULE__, opts])
+        call(:all, [@module, opts])
       end
 
       def get(id, opts \\ []) do
-        call(:get, [__MODULE__, id, opts])
+        call(:get, [@module, id, opts])
       end
 
       def get!(id, opts \\ []) do
-        call(:get!, [__MODULE__, id, opts])
+        call(:get!, [@module, id, opts])
       end
 
       def get_by(clauses, opts \\ []) do
-        call(:get_by, [__MODULE__, clauses, opts])
+        call(:get_by, [@module, clauses, opts])
       end
 
       def get_by!(clauses, opts \\ []) do
-        call(:get_by!, [__MODULE__, clauses, opts])
-      end
-
-      def insert(struct, opts \\ []) do
-        call(:insert, [struct, opts])
-      end
-
-      def insert!(struct, opts \\ []) do
-        call(:insert!, [struct, opts])
+        call(:get_by!, [@module, clauses, opts])
       end
 
       def delete(struct, opts \\ []) do
@@ -36,6 +29,20 @@ defmodule Ecto.Rut do
 
       def delete!(struct, opts \\ []) do
         call(:delete!, [struct, opts])
+      end
+
+      def insert(keywords, opts \\ []) do
+        @module
+        |> Kernel.struct
+        |> @module.changeset(to_map(keywords))
+        |> repo.insert(opts)
+      end
+
+      def insert!(keywords, opts \\ []) do
+        @module
+        |> Kernel.struct
+        |> @module.changeset(to_map(keywords))
+        |> repo.insert!(opts)
       end
 
 
@@ -50,10 +57,14 @@ defmodule Ecto.Rut do
       end
 
       defp parent_module do
-        __MODULE__
+        @module
         |> Module.split
         |> Enum.drop(-1)
         |> Module.concat
+      end
+
+      defp to_map(keyword) do
+        Enum.into(keyword, %{})
       end
 
     end
