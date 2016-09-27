@@ -14,19 +14,23 @@ defmodule Ecto.Rut do
   # Create a Post
   Post.insert(title: "Introduction to Elixir", categories: ["Elixir", "Programming"])
 
+  # Get all Posts
+  Post.all
+
   # Get a Post with its id
   Post.get(3)
 
-  # Get all Posts
-  Post.all
+  # Get a Post with another attribute
+  Post.get_by(published_date: "2016-02-24")
 
   # Delete a Post
   Post.delete(lame_post)
   ```
 
-  ## Usage
+  ## Installation
 
-  Once installed, all you need to do is call `use Ecto.Rut` in your Ecto model:
+  Once added to your mix dependencies, all you need to do is call `use Ecto.Rut` in
+  your Ecto models:
 
   ```
   defmodule YourApp.Post do
