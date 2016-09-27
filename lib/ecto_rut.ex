@@ -94,18 +94,30 @@ defmodule Ecto.Rut do
         call(:delete!, [struct, opts])
       end
 
-      def insert(keywords, opts \\ []) do
-        @module
-        |> Kernel.struct
-        |> @module.changeset(to_map(keywords))
-        |> repo.insert(opts)
+      def insert(struct, opts \\ [])
+
+      def insert(struct, opts) when is_map(struct) do
+        call(:insert, [struct, opts])
       end
 
-      def insert!(keywords, opts \\ []) do
+      def insert(keywords, opts) do
         @module
         |> Kernel.struct
         |> @module.changeset(to_map(keywords))
-        |> repo.insert!(opts)
+        |> insert(opts)
+      end
+
+      def insert!(struct, opts \\ [])
+
+      def insert!(struct, opts) when is_map(struct) do
+        call(:insert!, [struct, opts])
+      end
+
+      def insert!(keywords, opts) do
+        @module
+        |> Kernel.struct
+        |> @module.changeset(to_map(keywords))
+        |> insert!(opts)
       end
 
 

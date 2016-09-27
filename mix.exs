@@ -1,5 +1,4 @@
 defmodule Ecto.Rut.Mixfile do
-
   use Mix.Project
 
   @version "1.0.1"
