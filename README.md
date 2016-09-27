@@ -17,7 +17,7 @@ Add `:ecto_rut` as a dependency in your mix.exs file:
 
 ```elixir
 defp deps do
-  [{:ecto_rut, "~> 1.0.1"}]
+  [{:ecto_rut, "~> 1.0.2"}]
 end
 ```
 
