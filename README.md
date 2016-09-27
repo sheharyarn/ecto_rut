@@ -75,17 +75,47 @@ Post.all
 Post.get(2)
 # instead of YourApp.Repo.get(Post, 2)
 
-
-# Other available methods:
-
 Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
+# instead of:
+# changeset = Post.changeset(%Post{}, %{title: "Awesome Post", slug: "awesome-post", category_id: 3})
+# YourApp.Repo.insert(changeset)
 
-Post.delete(bad_post)
-
-Post.get_by(category: "elixir")
 ```
 
-All methods (except `all/0`) also have their bang versions available, i.e. `get!/1`.
+
+
+## Method Coverage
+
+| Ecto.Repo Methods      | Ecto.Rut Methods | Additional Notes                               |
+|------------------------|------------------|------------------------------------------------|
+| Repo.aggregate         | —                | —                                              |
+| Repo.all               | Model.all        | —                                              |
+| Repo.config            | —                | —                                              |
+| Repo.delete            | Model.delete     | —                                              |
+| Repo.delete!           | Model.delete!    | —                                              |
+| Repo.delete_all        | —                | —                                              |
+| Repo.get               | Model.get        | —                                              |
+| Repo.get!              | Model.get!       | —                                              |
+| Repo.get_by            | Model.get_by     | —                                              |
+| Repo.get_by!           | Model.get_by!    | —                                              |
+| Repo.in_transaction?   | —                | —                                              |
+| Repo.insert            | Model.insert     | Accepts both Ecto changesets and Keyword lists |
+| Repo.insert!           | Model.insert!    | Accepts both Ecto changesets and Keyword lists |
+| Repo.insert_all        | —                | —                                              |
+| Repo.insert_or_update  | —                | —                                              |
+| Repo.insert_or_update! | —                | —                                              |
+| Repo.one               | —                | —                                              |
+| Repo.one!              | —                | —                                              |
+| Repo.preload           | —                | —                                              |
+| Repo.query             | —                | —                                              |
+| Repo.query!            | —                | —                                              |
+| Repo.rollback          | —                | —                                              |
+| Repo.start_link        | —                | —                                              |
+| Repo.stop              | —                | —                                              |
+| Repo.transaction       | —                | —                                              |
+| Repo.update            | —                | —                                              |
+| Repo.update!           | —                | —                                              |
+| Repo.update_all        | —                | —                                              |
 
 
 
