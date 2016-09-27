@@ -1,10 +1,13 @@
 Ecto.Rut
 ========
 
-> Ecto Model shortcuts to make your life easier! :tada:
+> Provides simple, sane and terse shortcuts for Ecto models.
 
-Tired of calling `YourApp.Repo` in your Ecto app for all CRUD operations? Sick of code repetitions?
-Want to create, find, update and delete model objects the old ruby-way? Fret no more, `Ecto.Rut` is here!
+Ecto.Rut is a wrapper around `Ecto.Repo` methods that usually require you to pass
+the module as the subject and sometimes even require you do extra work before hand,
+(as in the case of `Repo.insert/3`) to perform operations on your database. Ecto.Rut
+tries to reduce code repetition by following the "Convention over Configuration"
+ideology.
 
 
 
