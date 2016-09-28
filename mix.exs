@@ -4,12 +4,24 @@ defmodule Ecto.Rut.Mixfile do
   @version "1.0.2"
 
   def project do
-    [app: :ecto_rut,
-     version: @version,
-     elixir: "~> 1.0",
-     description: description(),
-     package: package(),
-     deps: deps()]
+    [
+      # Project
+      app:          :ecto_rut,
+      version:      @version,
+      elixir:       "~> 1.0",
+      description:  description(),
+      package:      package(),
+      deps:         deps(),
+
+      # ExDoc
+      name:         "Ecto.Rut",
+      source_url:   "https://github.com/sheharyarn/ecto_rut",
+      homepage_url: "https://github.com/sheharyarn/ecto_rut",
+      docs: [
+        canonical:  "https://hexdocs.com/ecto_rut",
+        extras:     ["README.md"]
+      ]
+    ]
   end
 
   def application do
