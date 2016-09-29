@@ -27,6 +27,7 @@ defmodule Ecto.Rut do
   Post.delete(lame_post)
   ```
 
+
   ## Installation
 
   Once added to your mix dependencies, all you need to do is call `use Ecto.Rut` in
@@ -56,6 +57,30 @@ defmodule Ecto.Rut do
 
       # Other stuff...
     end
+  end
+  ```
+
+
+  ## Configuration
+
+  You can also pass options to Ecto.Rut when calling `use` on it. These values are inferred
+  automatically by Ecto.Rut, but you can set them yourself in those special cases where it
+  can't. The two options are:
+
+    - `:model`
+
+        You set this when your Ecto Model is different from the module where you are calling `use`
+
+    - `:repo`
+
+        You set this when your app's Ecto.Repo module is set differently.
+
+  ```
+  defmodule YourApp.OtherNamespace.Post do
+    use Ecto.Schema
+    use Ecto.Rut,  model: YourApp.Post,  repo: YourApp.CustomEcto.Repo
+
+    # Other Stuff
   end
   ```
 
