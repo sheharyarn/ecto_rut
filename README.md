@@ -12,7 +12,7 @@ ideology.
 See the [Ecto.Rut Documentation][1] on HexDocs.
 
 
-## [Installation][5]
+## Installation
 
 Add `:ecto_rut` as a dependency in your mix.exs file:
 
@@ -65,7 +65,7 @@ end
 
 
 
-## [Basic Usage][1]
+## Basic Usage
 
 You can call normal `Ecto.Repo` methods directly on the Models:
 
@@ -120,7 +120,7 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 
 
-## [Configuration][6]
+## Configuration
 
 You do not need to configure Ecto.Rut unless your app is set up differently. All values are
 inferred automatically and it should just work, but if you absolutely have to, you can specify
@@ -142,7 +142,7 @@ See the [Configuration Section][6] in HexDocs for more details.
  - [ ] Write Tests
  - [ ] Write Documentation
  - [ ] Cover all main `Ecto.Repo` methods
- - [ ] Allow explicitly passing Application and Repo modules to the `use Ecto.Rut` statement
+ - [x] Allow explicitly passing Application and Repo modules to the `use Ecto.Rut` statement
  - [ ] Introduce new wrapper methods that accept direct arguments (Such as `Post.delete_by_id(3)`)
 
 
