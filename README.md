@@ -1,5 +1,5 @@
-Ecto.Rut
-========
+[Ecto.Rut][1]
+=============
 
 > Provides simple, sane and terse shortcuts for Ecto models.
 
@@ -9,15 +9,16 @@ the module as the subject and sometimes even require you do extra work before ha
 tries to reduce code repetition by following the "Convention over Configuration"
 ideology.
 
+See the [Ecto.Rut Documentation][1] on HexDocs.
 
 
-## Installation
+## [Installation][5]
 
 Add `:ecto_rut` as a dependency in your mix.exs file:
 
 ```elixir
 defp deps do
-  [{:ecto_rut, "~> 1.0.2"}]
+  [{:ecto_rut, "~> 1.1.0"}]
 end
 ```
 
@@ -29,7 +30,7 @@ $ mix deps.get
 
 ### Phoenix Projects
 
-If you have an app built in [Phoenix Framework][1], just add `use Ecto.Rut` in the `models` method
+If you have an app built in [Phoenix Framework][2], just add `use Ecto.Rut` in the `models` method
 in `web/web.ex`:
 
 ```elixir
@@ -64,7 +65,7 @@ end
 
 
 
-## Basic Usage
+## [Basic Usage][1]
 
 You can call normal `Ecto.Repo` methods directly on the Models:
 
@@ -119,6 +120,23 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 
 
+## [Configuration][6]
+
+You do not need to configure Ecto.Rut unless your app is set up differently. All values are
+inferred automatically and it should just work, but if you absolutely have to, you can specify
+the `repo` and `model` modules:
+
+```elixir
+defmodule YourApp.Post do
+  use Ecto.Schema
+  use Ecto.Rut, model: YourApp.Other.Post, repo: YourApp.Repo
+end
+```
+
+See the [Configuration Section][6] in HexDocs for more details.
+
+
+
 ## Roadmap
 
  - [ ] Write Tests
@@ -131,7 +149,7 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 ## Contributing
 
- - [Fork][2], Enhance, Send PR
+ - [Fork][3], Enhance, Send PR
  - Lock issues with any bugs or feature requests
  - Implement something from Roadmap
  - Spread the word
@@ -140,12 +158,15 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 ## License
 
-This package is available as open source under the terms of the [MIT License][3].
+This package is available as open source under the terms of the [MIT License][4].
 
 
 
-  [1]: https://github.com/phoenixframework/phoenix
-  [2]: https://github.com/sheharyarn/ecto_rut/fork
-  [3]: http://opensource.org/licenses/MIT
+  [1]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html
+  [2]: https://github.com/phoenixframework/phoenix
+  [3]: https://github.com/sheharyarn/ecto_rut/fork
+  [4]: http://opensource.org/licenses/MIT
+  [5]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-installation
+  [6]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-configuration
 
 
