@@ -30,8 +30,9 @@ defmodule Ecto.Rut.Mixfile do
 
   defp deps do
     [
-      {:ecto,   "~> 2.0.0"},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ecto,     "~> 2.0.0"},
+      {:postgrex, "~> 0.12.0", only: :test},
+      {:ex_doc,   ">= 0.0.0",  only: :dev}
     ]
   end
 

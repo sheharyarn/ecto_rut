@@ -1,6 +1,6 @@
-defmodule EctoRutTest do
+defmodule Ecto.Rut.Test do
   use ExUnit.Case
-  doctest EctoRut
+  doctest Ecto.Rut
 
   test "the truth" do
     assert 1 + 1 == 2
