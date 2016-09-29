@@ -62,28 +62,31 @@ defmodule Ecto.Rut do
   """
 
   @doc false
-  defmacro __using__(_) do
-    quote do
-      @module __MODULE__
+  defmacro __using__(opts \\ []) do
+    quote bind_quoted: [opts: opts] do
+      @model  opts[:model] || __MODULE__
+      @app    opts[:app]   || @model |> Module.split |> Enum.drop(-1) |> Module.concat
+      @repo   opts[:repo]  || @app |> Module.concat("Repo")
+
 
       def all(opts \\ []) do
-        call(:all, [@module, opts])
+        call(:all, [@model, opts])
       end
 
       def get(id, opts \\ []) do
-        call(:get, [@module, id, opts])
+        call(:get, [@model, id, opts])
       end
 
       def get!(id, opts \\ []) do
-        call(:get!, [@module, id, opts])
+        call(:get!, [@model, id, opts])
       end
 
       def get_by(clauses, opts \\ []) do
-        call(:get_by, [@module, clauses, opts])
+        call(:get_by, [@model, clauses, opts])
       end
 
       def get_by!(clauses, opts \\ []) do
-        call(:get_by!, [@module, clauses, opts])
+        call(:get_by!, [@model, clauses, opts])
       end
 
       def delete(struct, opts \\ []) do
@@ -101,9 +104,9 @@ defmodule Ecto.Rut do
       end
 
       def insert(keywords, opts) do
-        @module
+        @model
         |> Kernel.struct
-        |> @module.changeset(to_map(keywords))
+        |> @model.changeset(to_map(keywords))
         |> insert(opts)
       end
 
@@ -114,9 +117,9 @@ defmodule Ecto.Rut do
       end
 
       def insert!(keywords, opts) do
-        @module
+        @model
         |> Kernel.struct
-        |> @module.changeset(to_map(keywords))
+        |> @model.changeset(to_map(keywords))
         |> insert!(opts)
       end
 
@@ -124,18 +127,7 @@ defmodule Ecto.Rut do
       # Private Methods
 
       defp call(method, args \\ []) do
-        apply(repo, method, args)
-      end
-
-      defp repo do
-        Module.concat(parent_module, "Repo")
-      end
-
-      defp parent_module do
-        @module
-        |> Module.split
-        |> Enum.drop(-1)
-        |> Module.concat
+        apply(@repo, method, args)
       end
 
       defp to_map(keyword) do
