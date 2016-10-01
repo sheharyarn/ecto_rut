@@ -10,7 +10,8 @@ config :ecto_rut, Ecto.Rut.TestProject.Repo,
   database: "ecto_rut_test",
   username: "postgres",
   password: "postgres",
-  hostname: "localhost"
+  hostname: "localhost",
+  pool: Ecto.Adapters.SQL.Sandbox
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

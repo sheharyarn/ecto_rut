@@ -1,8 +1,16 @@
 defmodule Ecto.Rut.Test do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   doctest Ecto.Rut
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  alias Ecto.Rut.TestProject
+
+  setup do
+    TestProject.Utils.cleanup
+  end
+
+  test "something" do
+    TestProject.Post.insert(title: "Shieeet")
+    [post] = TestProject.Post.all
+    assert post.title == "Shieeet"
   end
 end
