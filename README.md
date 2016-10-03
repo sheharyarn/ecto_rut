@@ -1,5 +1,5 @@
-[Ecto.Rut][1]
-=============
+[![logo][logo]][1]
+==================
 
 > Provides simple, sane and terse shortcuts for Ecto models.
 
@@ -165,6 +165,7 @@ This package is available as open source under the terms of the [MIT License][4]
 
 
 
+  [logo]: http://i.imgur.com/4CYuLpo.png
   [1]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html
   [2]: https://github.com/phoenixframework/phoenix
   [3]: https://github.com/sheharyarn/ecto_rut/fork
