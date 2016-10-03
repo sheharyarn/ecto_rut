@@ -12,6 +12,27 @@ ideology.
 See the [Ecto.Rut Documentation][1] on HexDocs.
 
 
+
+## Basic Usage
+
+You can call normal `Ecto.Repo` methods directly on the Models:
+
+```elixir
+Post.all
+# instead of YourApp.Repo.all(Post)
+
+Post.get(2)
+# instead of YourApp.Repo.get(Post, 2)
+
+Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
+# instead of:
+# changeset = Post.changeset(%Post{}, %{title: "Awesome Post", slug: "awesome-post", category_id: 3})
+# YourApp.Repo.insert(changeset)
+
+```
+
+
+
 ## Installation
 
 Add `:ecto_rut` as a dependency in your mix.exs file:
@@ -65,23 +86,20 @@ end
 
 
 
-## Basic Usage
+## Configuration
 
-You can call normal `Ecto.Repo` methods directly on the Models:
+You do not need to configure Ecto.Rut unless your app is set up differently. All values are
+inferred automatically and it should just work, but if you absolutely have to, you can specify
+the `repo` and `model` modules:
 
 ```elixir
-Post.all
-# instead of YourApp.Repo.all(Post)
-
-Post.get(2)
-# instead of YourApp.Repo.get(Post, 2)
-
-Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
-# instead of:
-# changeset = Post.changeset(%Post{}, %{title: "Awesome Post", slug: "awesome-post", category_id: 3})
-# YourApp.Repo.insert(changeset)
-
+defmodule YourApp.Post do
+  use Ecto.Schema
+  use Ecto.Rut, model: YourApp.Other.Post, repo: YourApp.Repo
+end
 ```
+
+See the [Configuration Section][6] in HexDocs for more details.
 
 
 
@@ -117,23 +135,6 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 | Repo.update            | —                | —                                              |
 | Repo.update!           | —                | —                                              |
 | Repo.update_all        | —                | —                                              |
-
-
-
-## Configuration
-
-You do not need to configure Ecto.Rut unless your app is set up differently. All values are
-inferred automatically and it should just work, but if you absolutely have to, you can specify
-the `repo` and `model` modules:
-
-```elixir
-defmodule YourApp.Post do
-  use Ecto.Schema
-  use Ecto.Rut, model: YourApp.Other.Post, repo: YourApp.Repo
-end
-```
-
-See the [Configuration Section][6] in HexDocs for more details.
 
 
 
