@@ -1,4 +1,4 @@
-defmodule Ecto.Rut.Test.Shiet do
+defmodule Ecto.Rut.Test.AnotherShiet do
   use   ExUnit.Case
   alias Ecto.Rut.TestProject
 
