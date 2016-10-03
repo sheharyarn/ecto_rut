@@ -31,6 +31,8 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 ```
 
+See the [Repo Coverage Section][7] or the [Hex Documentation][1] for a full list of supported methods.
+
 
 
 ## Installation
@@ -169,5 +171,6 @@ This package is available as open source under the terms of the [MIT License][4]
   [4]: http://opensource.org/licenses/MIT
   [5]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-installation
   [6]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-configuration
+  [7]: https://github.com/sheharyarn/ecto_rut#method-coverage
 
 
