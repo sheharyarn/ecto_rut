@@ -1,5 +1,9 @@
-[![logo][logo]][1]
-==================
+[![logo][logo]][docs]
+=====================
+
+[![Version][shield-version]][hexpm]
+[![License][shield-license]][hexpm]
+<!--[![Downloads][shield-downloads]][hexpm] -->
 
 > Provides simple, sane and terse shortcuts for Ecto models.
 
@@ -9,7 +13,7 @@ the module as the subject and sometimes even require you do extra work before ha
 tries to reduce code repetition by following the "Convention over Configuration"
 ideology.
 
-See the [Ecto.Rut Documentation][1] on HexDocs.
+See the [Ecto.Rut Documentation][docs] on HexDocs.
 
 
 
@@ -31,7 +35,7 @@ Post.insert(title: "Awesome Post", slug: "awesome-post", category_id: 3)
 
 ```
 
-See the [Repo Coverage Section][7] or the [Hex Documentation][1] for a full list of supported methods.
+See the [Repo Coverage Section][github-coverage] or the [Hex Documentation][docs] for a full list of supported methods.
 
 
 
@@ -53,7 +57,7 @@ $ mix deps.get
 
 ### Phoenix Projects
 
-If you have an app built in [Phoenix Framework][2], just add `use Ecto.Rut` in the `models` method
+If you have an app built in [Phoenix Framework][phoenix], just add `use Ecto.Rut` in the `models` method
 in `web/web.ex`:
 
 ```elixir
@@ -101,7 +105,7 @@ defmodule YourApp.Post do
 end
 ```
 
-See the [Configuration Section][6] in HexDocs for more details.
+See the [Configuration Section][docs-config] in HexDocs for more details.
 
 
 
@@ -152,7 +156,7 @@ See the [Configuration Section][6] in HexDocs for more details.
 
 ## Contributing
 
- - [Fork][3], Enhance, Send PR
+ - [Fork][github-fork], Enhance, Send PR
  - Lock issues with any bugs or feature requests
  - Implement something from Roadmap
  - Spread the word
@@ -161,17 +165,23 @@ See the [Configuration Section][6] in HexDocs for more details.
 
 ## License
 
-This package is available as open source under the terms of the [MIT License][4].
+This package is available as open source under the terms of the [MIT License][license].
 
 
 
-  [logo]: http://i.imgur.com/4CYuLpo.png
-  [1]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html
-  [2]: https://github.com/phoenixframework/phoenix
-  [3]: https://github.com/sheharyarn/ecto_rut/fork
-  [4]: http://opensource.org/licenses/MIT
-  [5]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-installation
-  [6]: https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-configuration
-  [7]: https://github.com/sheharyarn/ecto_rut#method-coverage
+  [logo]:             http://i.imgur.com/4CYuLpo.png
+  [shield-version]:   https://img.shields.io/hexpm/v/ecto_rut.svg?maxAge=2592000?style=flat-square
+  [shield-license]:   https://img.shields.io/hexpm/l/ecto_rut.svg?maxAge=2592000?style=flat-square
+  [shield-downloads]: https://img.shields.io/hexpm/dt/ecto_rut.svg?maxAge=2592000?style=flat-square
+
+  [license]:          http://opensource.org/licenses/MIT
+  [phoenix]:          https://github.com/phoenixframework/phoenix
+
+  [github-coverage]:  https://github.com/sheharyarn/ecto_rut#method-coverage
+  [github-fork]:      https://github.com/sheharyarn/ecto_rut/fork
+
+  [hexpm]:            https://hex.pm/packages/ecto_rut
+  [docs]:             https://hexdocs.pm/ecto_rut/Ecto.Rut.html
+  [docs-config]:      https://hexdocs.pm/ecto_rut/Ecto.Rut.html#module-configuration
 
 
