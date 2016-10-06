@@ -45,7 +45,7 @@ Add `:ecto_rut` as a dependency in your mix.exs file:
 
 ```elixir
 defp deps do
-  [{:ecto_rut, "~> 1.1.0"}]
+  [{:ecto_rut, "~> 1.1.1"}]
 end
 ```
 
@@ -111,42 +111,42 @@ See the [Configuration Section][docs-config] in HexDocs for more details.
 
 ## Method Coverage
 
-| Ecto.Repo Methods      | Ecto.Rut Methods | Additional Notes                               |
-|:-----------------------|:-----------------|:-----------------------------------------------|
-| Repo.aggregate         | —                | —                                              |
-| Repo.all               | Model.all        | —                                              |
-| Repo.config            | —                | —                                              |
-| Repo.delete            | Model.delete     | —                                              |
-| Repo.delete!           | Model.delete!    | —                                              |
-| Repo.delete_all        | —                | —                                              |
-| Repo.get               | Model.get        | —                                              |
-| Repo.get!              | Model.get!       | —                                              |
-| Repo.get_by            | Model.get_by     | —                                              |
-| Repo.get_by!           | Model.get_by!    | —                                              |
-| Repo.in_transaction?   | —                | —                                              |
-| Repo.insert            | Model.insert     | Accepts both Ecto changesets and Keyword lists |
-| Repo.insert!           | Model.insert!    | Accepts both Ecto changesets and Keyword lists |
-| Repo.insert_all        | —                | —                                              |
-| Repo.insert_or_update  | —                | —                                              |
-| Repo.insert_or_update! | —                | —                                              |
-| Repo.one               | —                | —                                              |
-| Repo.one!              | —                | —                                              |
-| Repo.preload           | —                | —                                              |
-| Repo.query             | —                | —                                              |
-| Repo.query!            | —                | —                                              |
-| Repo.rollback          | —                | —                                              |
-| Repo.start_link        | —                | —                                              |
-| Repo.stop              | —                | —                                              |
-| Repo.transaction       | —                | —                                              |
-| Repo.update            | —                | —                                              |
-| Repo.update!           | —                | —                                              |
-| Repo.update_all        | —                | —                                              |
+| Ecto.Repo Methods      | Ecto.Rut Methods  | Additional Notes                               |
+|:-----------------------|:------------------|:-----------------------------------------------|
+| Repo.aggregate         | —                 | —                                              |
+| Repo.all               | Model.all         | —                                              |
+| Repo.config            | —                 | —                                              |
+| Repo.delete            | Model.delete      | —                                              |
+| Repo.delete!           | Model.delete!     | —                                              |
+| Repo.delete_all        | Model.delete_all  | —                                              |
+| Repo.get               | Model.get         | —                                              |
+| Repo.get!              | Model.get!        | —                                              |
+| Repo.get_by            | Model.get_by      | —                                              |
+| Repo.get_by!           | Model.get_by!     | —                                              |
+| Repo.in_transaction?   | —                 | —                                              |
+| Repo.insert            | Model.insert      | Accepts both Ecto changesets and Keyword lists |
+| Repo.insert!           | Model.insert!     | Accepts both Ecto changesets and Keyword lists |
+| Repo.insert_all        | —                 | —                                              |
+| Repo.insert_or_update  | —                 | —                                              |
+| Repo.insert_or_update! | —                 | —                                              |
+| Repo.one               | —                 | —                                              |
+| Repo.one!              | —                 | —                                              |
+| Repo.preload           | —                 | —                                              |
+| Repo.query             | —                 | —                                              |
+| Repo.query!            | —                 | —                                              |
+| Repo.rollback          | —                 | —                                              |
+| Repo.start_link        | —                 | —                                              |
+| Repo.stop              | —                 | —                                              |
+| Repo.transaction       | —                 | —                                              |
+| Repo.update            | —                 | —                                              |
+| Repo.update!           | —                 | —                                              |
+| Repo.update_all        | —                 | —                                              |
 
 
 
 ## Roadmap
 
- - [ ] Write Tests
+ - [x] Write Tests
  - [ ] Write Documentation
  - [ ] Cover all main `Ecto.Repo` methods
  - [x] Allow explicitly passing Application and Repo modules to the `use Ecto.Rut` statement
