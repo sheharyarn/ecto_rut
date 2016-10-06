@@ -122,6 +122,10 @@ defmodule Ecto.Rut do
         call(:delete!, [struct, opts])
       end
 
+      def delete_all(opts \\ []) do
+        call(:delete_all, [@model, opts])
+      end
+
       def insert(struct, opts \\ [])
 
       def insert(struct, opts) when is_map(struct) do
