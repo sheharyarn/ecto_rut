@@ -18,6 +18,7 @@ defmodule Ecto.Rut.Mixfile do
       source_url:   "https://github.com/sheharyarn/ecto_rut",
       homepage_url: "https://github.com/sheharyarn/ecto_rut",
       docs: [
+        main:       "Ecto.Rut",
         canonical:  "https://hexdocs.com/ecto_rut",
         extras:     ["README.md"]
       ]
