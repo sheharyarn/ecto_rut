@@ -11,32 +11,21 @@ defmodule Ecto.Rut.Test.Insert do
   end
 
 
-  test "insert works with keyword lists" do
-    assert length(Repo.all(Post)) == 0
-    Post.insert(title: "Introduction to Elixir", categories: ~w(elixir programming), published: true)
-    assert length(Repo.all(Post)) == 1
-  end
+  Enum.each [:insert, :insert!], fn method ->
+    @method method
 
-  test "insert works with changesets" do
-    assert length(Repo.all(Post)) == 0
-    %Post{}
-    |> Post.changeset(%{title: "Introduction to Elixir", categories: ~w(elixir programming), published: true})
-    |> Post.insert
-    assert length(Repo.all(Post)) == 1
-  end
+    test "#{@method} works with keyword lists" do
+      assert length(Repo.all(Post)) == 0
+      apply(Post, @method, [[title: "Elixir: Intro", categories: ~w(elixir programming), published: true]])
+      assert length(Repo.all(Post)) == 1
+    end
 
-  test "insert! works with keyword lists" do
-    assert length(Repo.all(Post)) == 0
-    Post.insert!(title: "Introduction to Elixir", categories: ~w(elixir programming), published: true)
-    assert length(Repo.all(Post)) == 1
-  end
-
-  test "insert! works with changesets" do
-    assert length(Repo.all(Post)) == 0
-    %Post{}
-    |> Post.changeset(%{title: "Introduction to Elixir", categories: ~w(elixir programming), published: true})
-    |> Post.insert!
-    assert length(Repo.all(Post)) == 1
+    test "#{@method} works with changesets" do
+      assert length(Repo.all(Post)) == 0
+      cset = Post.changeset(%Post{}, %{title: "Elixir: Intro", categories: ~w(elixir programming), published: true})
+      apply(Post, @method, [cset])
+      assert length(Repo.all(Post)) == 1
+    end
   end
 
 end
