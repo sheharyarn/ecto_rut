@@ -84,6 +84,12 @@ defmodule Ecto.Rut do
   end
   ```
 
+  ## Shared Options
+
+  Ecto.Rut accepts all options that `Ecto.Repo` does. For a full list, see their
+  [Shared Options](https://hexdocs.pm/ecto/Ecto.Repo.html#module-shared-options)
+  section.
+
   """
 
   @doc false
@@ -165,5 +171,55 @@ defmodule Ecto.Rut do
 
     end
   end
+
+
+  @doc """
+  Fetches all entries from the Datastore for the Model
+
+  ## Options
+
+  See ["Shared Options"](#module-shared-options)
+
+  ## Example
+
+  ```
+  Post.all
+  ```
+
+  """
+  @callback all(opts :: Keyword.t) :: [Ecto.Schema.t] | no_return
+
+
+  @doc """
+  Fetches a single struct from the data store where the primary key matches the given id.
+
+  Returns nil if no result was found. If the struct in the queryable has no or more than one primary key, it will raise an argument error.
+
+  ## Options
+
+  See ["Shared Options"](#module-shared-options)
+
+  ## Example
+
+  ```
+  Post.get(3)
+  Post.get("0e531047-6bd2-4ab1-94c3-817fba988dbe")
+  ```
+
+  """
+  @callback get(id :: term, opts :: Keyword.t) :: [Ecto.Schema.t] | nil | no_return
+
+
+  @doc """
+  Similar to `get/2` but raises `Ecto.NoResultsError` if no record was found.
+
+  ## Example
+
+  ```
+  Post.get!(3)
+  ```
+
+  """
+  @callback get!(id :: term, opts :: Keyword.t) :: [Ecto.Schema.t] | nil | no_return
 end
 
