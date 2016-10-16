@@ -173,8 +173,11 @@ defmodule Ecto.Rut do
   end
 
 
+
   @doc """
   Fetches all entries from the Datastore for the Model
+
+  See `c:Ecto.Repo.all/2`.
 
   ## Options
 
@@ -190,10 +193,12 @@ defmodule Ecto.Rut do
   @callback all(opts :: Keyword.t) :: [Ecto.Schema.t] | no_return
 
 
+
   @doc """
   Fetches a single struct from the data store where the primary key matches the given id.
 
-  Returns nil if no result was found. If the struct in the queryable has no or more than one primary key, it will raise an argument error.
+  Returns nil if no result was found. If the struct in the queryable has no or more than one
+  primary key, it will raise an argument error. See `c:Ecto.Repo.get/3`.
 
   ## Options
 
@@ -207,19 +212,43 @@ defmodule Ecto.Rut do
   ```
 
   """
-  @callback get(id :: term, opts :: Keyword.t) :: [Ecto.Schema.t] | nil | no_return
+  @callback get(id :: term, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+
 
 
   @doc """
-  Similar to `get/2` but raises `Ecto.NoResultsError` if no record was found.
+  Similar to `c:get/2` but raises `Ecto.NoResultsError` if no record was found.
+  Also see `c:Ecto.Repo.get!/3`.
+  """
+  @callback get!(id :: term, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+
+
+
+  @doc """
+  Fetches a single struct from the data store that matches the passed clauses.
+
+  Returns `nil` if no result was found. See `c:Ecto.Repo.get_by/3`.
+
+  ## Options
+
+  See ["Shared Options"](#module-shared-options)
 
   ## Example
 
   ```
-  Post.get!(3)
+  Post.get_by(title: "Introduction to Elixir")
+  Post.get_by(published_date: "2015-10-15")
   ```
 
   """
-  @callback get!(id :: term, opts :: Keyword.t) :: [Ecto.Schema.t] | nil | no_return
+  @callback get_by(clauses :: Keyword.t, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+
+
+
+  @doc """
+  Similar to `c:get_by/2` but raises `Ecto.NoResultsError` if no record was found.
+  Also see `c:Ecto.Repo.get_by!/3`.
+  """
+  @callback get_by!(clauses :: Keyword.t, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
 end
 
