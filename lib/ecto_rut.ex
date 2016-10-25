@@ -83,13 +83,6 @@ defmodule Ecto.Rut do
     # Other Stuff
   end
   ```
-
-  ## Shared Options
-
-  Ecto.Rut accepts all options that `Ecto.Repo` does. For a full list, see their
-  [Shared Options](https://hexdocs.pm/ecto/Ecto.Repo.html#module-shared-options)
-  section.
-
   """
 
   @doc false
@@ -224,10 +217,6 @@ defmodule Ecto.Rut do
 
   See `c:Ecto.Repo.all/2`.
 
-  ## Options
-
-  See ["Shared Options"](#module-shared-options)
-
   ## Example
 
   ```
@@ -245,10 +234,6 @@ defmodule Ecto.Rut do
   Returns nil if no result was found. If the struct in the queryable has no or more than one
   primary key, it will raise an argument error. See `c:Ecto.Repo.get/3`.
 
-  ## Options
-
-  See ["Shared Options"](#module-shared-options)
-
   ## Example
 
   ```
@@ -257,15 +242,15 @@ defmodule Ecto.Rut do
   ```
 
   """
-  @callback get(id :: term, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+  @callback get(id :: term) :: Ecto.Schema.t | nil | no_return
 
 
 
   @doc """
-  Similar to `c:get/2` but raises `Ecto.NoResultsError` if no record was found.
+  Similar to `c:get/1` but raises `Ecto.NoResultsError` if no record was found.
   Also see `c:Ecto.Repo.get!/3`.
   """
-  @callback get!(id :: term, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+  @callback get!(id :: term) :: Ecto.Schema.t | nil | no_return
 
 
 
@@ -273,10 +258,6 @@ defmodule Ecto.Rut do
   Fetches a single struct from the data store that matches the passed clauses.
 
   Returns `nil` if no result was found. See `c:Ecto.Repo.get_by/3`.
-
-  ## Options
-
-  See ["Shared Options"](#module-shared-options)
 
   ## Example
 
@@ -286,14 +267,14 @@ defmodule Ecto.Rut do
   ```
 
   """
-  @callback get_by(clauses :: Keyword.t, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+  @callback get_by(clauses :: Keyword.t) :: Ecto.Schema.t | nil | no_return
 
 
 
   @doc """
-  Similar to `c:get_by/2` but raises `Ecto.NoResultsError` if no record was found.
+  Similar to `c:get_by/1` but raises `Ecto.NoResultsError` if no record was found.
   Also see `c:Ecto.Repo.get_by!/3`.
   """
-  @callback get_by!(clauses :: Keyword.t, opts :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+  @callback get_by!(clauses :: Keyword.t) :: Ecto.Schema.t | nil | no_return
 end
 
