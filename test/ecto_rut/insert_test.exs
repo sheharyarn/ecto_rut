@@ -6,6 +6,10 @@ defmodule Ecto.Rut.Test.Insert do
   alias Ecto.Rut.TestProject.Post
 
 
+  def call(method, arg) do
+    apply(Post, method, [arg])
+  end
+
   setup do
     TestProject.Helpers.cleanup
   end
@@ -16,14 +20,20 @@ defmodule Ecto.Rut.Test.Insert do
 
     test "#{@method} works with keyword lists" do
       assert length(Repo.all(Post)) == 0
-      apply(Post, @method, [[title: "Elixir: Intro", categories: ~w(elixir programming), published: true]])
+      call(@method, title: "Elixir: Intro", categories: ~w(elixir programming), published: true)
+      assert length(Repo.all(Post)) == 1
+    end
+
+    test "#{@method} works with maps" do
+      assert length(Repo.all(Post)) == 0
+      call(@method, %{title: "Elixir: Intro", categories: ~w(elixir programming), published: true})
       assert length(Repo.all(Post)) == 1
     end
 
     test "#{@method} works with changesets" do
       assert length(Repo.all(Post)) == 0
       cset = Post.changeset(%Post{}, %{title: "Elixir: Intro", categories: ~w(elixir programming), published: true})
-      apply(Post, @method, [cset])
+      call(@method, cset)
       assert length(Repo.all(Post)) == 1
     end
   end

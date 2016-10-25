@@ -94,6 +94,8 @@ defmodule Ecto.Rut do
 
 
 
+      # Simple Methods
+
       def all,                  do: call(:all,        [@model])
       def delete_all,           do: call(:delete_all, [@model])
 
@@ -108,29 +110,30 @@ defmodule Ecto.Rut do
 
 
 
-      def insert(struct) when is_map(struct) do
-        call(:insert, [struct])
+      # Insert and Insert!
+
+      Enum.each [:insert, :insert!], fn method ->
+        def unquote(method)(%{__struct__: Ecto.Changeset} = changeset) do
+          call(unquote(method), [changeset])
+        end
+
+        def unquote(method)(map) when is_map(map) do
+          @model
+          |> Kernel.struct
+          |> changeset(map)
+          |> unquote(method)()
+        end
+
+        def unquote(method)(keywords) do
+          keywords
+          |> ExUtils.Keyword.to_map
+          |> unquote(method)()
+        end
       end
 
-      def insert(keywords) do
-        @model
-        |> Kernel.struct
-        |> changeset(to_map(keywords))
-        |> insert
-      end
 
 
-      def insert!(struct) when is_map(struct) do
-        call(:insert!, [struct])
-      end
-
-      def insert!(keywords) do
-        @model
-        |> Kernel.struct
-        |> changeset(to_map(keywords))
-        |> insert!
-      end
-
+      # Update and Update!
 
       def update(%{__struct__: @model} = struct) do
         update(struct, nil)
