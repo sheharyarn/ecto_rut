@@ -104,6 +104,7 @@ defmodule Ecto.Rut do
         call(:all, [@model, opts])
       end
 
+
       def get(id, opts \\ []) do
         call(:get, [@model, id, opts])
       end
@@ -112,6 +113,7 @@ defmodule Ecto.Rut do
         call(:get!, [@model, id, opts])
       end
 
+
       def get_by(clauses, opts \\ []) do
         call(:get_by, [@model, clauses, opts])
       end
@@ -119,6 +121,7 @@ defmodule Ecto.Rut do
       def get_by!(clauses, opts \\ []) do
         call(:get_by!, [@model, clauses, opts])
       end
+
 
       def delete(struct, opts \\ []) do
         call(:delete, [struct, opts])
@@ -132,6 +135,7 @@ defmodule Ecto.Rut do
         call(:delete_all, [@model, opts])
       end
 
+
       def insert(struct, opts \\ [])
 
       def insert(struct, opts) when is_map(struct) do
@@ -141,7 +145,7 @@ defmodule Ecto.Rut do
       def insert(keywords, opts) do
         @model
         |> Kernel.struct
-        |> @model.changeset(to_map(keywords))
+        |> changeset(to_map(keywords))
         |> insert(opts)
       end
 
@@ -154,9 +158,43 @@ defmodule Ecto.Rut do
       def insert!(keywords, opts) do
         @model
         |> Kernel.struct
-        |> @model.changeset(to_map(keywords))
+        |> changeset(to_map(keywords))
         |> insert!(opts)
       end
+
+
+      def update(%{__struct__: @model} = struct) do
+        update(struct, nil)
+      end
+
+      def update!(%{__struct__: @model} = struct) do
+        update!(struct, nil)
+      end
+
+      def update(%{__struct__: @model} = struct, new) do
+        [struct, map] = argument_for_update(struct, new)
+
+        struct
+        |> changeset(map)
+        |> update
+      end
+
+      def update!(%{__struct__: @model} = struct, new) do
+        [struct, map] = argument_for_update(struct, new)
+
+        struct
+        |> changeset(map)
+        |> update!
+      end
+
+      def update(%{__struct__: Ecto.Changeset} = changeset) do
+        call(:update, [changeset])
+      end
+
+      def update!(%{__struct__: Ecto.Changeset} = changeset) do
+        call(:update!, [changeset])
+      end
+
 
 
       # Private Methods
@@ -167,6 +205,16 @@ defmodule Ecto.Rut do
 
       defp to_map(keyword) do
         Enum.into(keyword, %{})
+      end
+
+      defp argument_for_update(struct, new) do
+        [struct, map] =
+          cond do
+            ExUtils.is_pure_map?(new) -> [struct, new]
+            Keyword.keyword?(new)     -> [struct, to_map(new)]
+            ExUtils.is_struct?(new)   -> [struct, Map.from_struct(new)]
+            is_nil(new)               -> [get!(struct.id), Map.from_struct(struct)]
+          end
       end
 
     end
