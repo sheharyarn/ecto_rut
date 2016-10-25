@@ -100,66 +100,63 @@ defmodule Ecto.Rut do
       @repo   opts[:repo]  || @app |> Module.concat("Repo")
 
 
-      def all(opts \\ []) do
-        call(:all, [@model, opts])
+      def all() do
+        call(:all, [@model])
       end
 
 
-      def get(id, opts \\ []) do
-        call(:get, [@model, id, opts])
+      def get(id) do
+        call(:get, [@model, id])
       end
 
-      def get!(id, opts \\ []) do
-        call(:get!, [@model, id, opts])
-      end
-
-
-      def get_by(clauses, opts \\ []) do
-        call(:get_by, [@model, clauses, opts])
-      end
-
-      def get_by!(clauses, opts \\ []) do
-        call(:get_by!, [@model, clauses, opts])
+      def get!(id) do
+        call(:get!, [@model, id])
       end
 
 
-      def delete(struct, opts \\ []) do
-        call(:delete, [struct, opts])
+      def get_by(clauses) do
+        call(:get_by, [@model, clauses])
       end
 
-      def delete!(struct, opts \\ []) do
-        call(:delete!, [struct, opts])
-      end
-
-      def delete_all(opts \\ []) do
-        call(:delete_all, [@model, opts])
+      def get_by!(clauses) do
+        call(:get_by!, [@model, clauses])
       end
 
 
-      def insert(struct, opts \\ [])
-
-      def insert(struct, opts) when is_map(struct) do
-        call(:insert, [struct, opts])
+      def delete(struct) do
+        call(:delete, [struct])
       end
 
-      def insert(keywords, opts) do
+      def delete!(struct) do
+        call(:delete!, [struct])
+      end
+
+      def delete_all() do
+        call(:delete_all, [@model])
+      end
+
+
+      def insert(struct) when is_map(struct) do
+        call(:insert, [struct])
+      end
+
+      def insert(keywords) do
         @model
         |> Kernel.struct
         |> changeset(to_map(keywords))
-        |> insert(opts)
+        |> insert
       end
 
-      def insert!(struct, opts \\ [])
 
-      def insert!(struct, opts) when is_map(struct) do
-        call(:insert!, [struct, opts])
+      def insert!(struct) when is_map(struct) do
+        call(:insert!, [struct])
       end
 
-      def insert!(keywords, opts) do
+      def insert!(keywords) do
         @model
         |> Kernel.struct
         |> changeset(to_map(keywords))
-        |> insert!(opts)
+        |> insert!
       end
 
 
