@@ -93,40 +93,19 @@ defmodule Ecto.Rut do
       @repo   opts[:repo]  || @app |> Module.concat("Repo")
 
 
-      def all() do
-        call(:all, [@model])
-      end
 
+      def all,                  do: call(:all,        [@model])
+      def delete_all,           do: call(:delete_all, [@model])
 
-      def get(id) do
-        call(:get, [@model, id])
-      end
+      def get(id),              do: call(:get,        [@model, id])
+      def get!(id),             do: call(:get!,       [@model, id])
 
-      def get!(id) do
-        call(:get!, [@model, id])
-      end
+      def get_by(clauses),      do: call(:get_by,     [@model, clauses])
+      def get_by!(clauses),     do: call(:get_by!,    [@model, clauses])
 
+      def delete(struct),       do: call(:delete,     [struct])
+      def delete!(struct),      do: call(:delete!,    [struct])
 
-      def get_by(clauses) do
-        call(:get_by, [@model, clauses])
-      end
-
-      def get_by!(clauses) do
-        call(:get_by!, [@model, clauses])
-      end
-
-
-      def delete(struct) do
-        call(:delete, [struct])
-      end
-
-      def delete!(struct) do
-        call(:delete!, [struct])
-      end
-
-      def delete_all() do
-        call(:delete_all, [@model])
-      end
 
 
       def insert(struct) when is_map(struct) do
@@ -224,7 +203,7 @@ defmodule Ecto.Rut do
   ```
 
   """
-  @callback all(opts :: Keyword.t) :: [Ecto.Schema.t] | no_return
+  @callback all :: [Ecto.Schema.t] | no_return
 
 
 
@@ -248,6 +227,7 @@ defmodule Ecto.Rut do
 
   @doc """
   Similar to `c:get/1` but raises `Ecto.NoResultsError` if no record was found.
+
   Also see `c:Ecto.Repo.get!/3`.
   """
   @callback get!(id :: term) :: Ecto.Schema.t | nil | no_return
@@ -273,8 +253,55 @@ defmodule Ecto.Rut do
 
   @doc """
   Similar to `c:get_by/1` but raises `Ecto.NoResultsError` if no record was found.
+
   Also see `c:Ecto.Repo.get_by!/3`.
   """
   @callback get_by!(clauses :: Keyword.t) :: Ecto.Schema.t | nil | no_return
+
+
+
+  @doc """
+  Deletes a struct using its primary key.
+
+  Returns `{:ok, struct}` if the struct was successfully deleted or `{:error, changeset}`
+  if there was a validation or a known constraint error.
+
+  See `c:Ecto.Repo.delete/2`.
+
+  ## Example
+
+  ```
+  case Post.delete(post) do
+    {:ok, struct}       -> # Deleted with success
+    {:error, changeset} -> # Something went wrong
+  end
+  ```
+  """
+  @callback delete(struct_or_changeset :: Ecto.Schema.t | Ecto.Changeset.t) :: {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
+
+
+
+  @doc """
+  Similar to `c:delete/1` but returns the struct or raises if the changeset is invalid.
+
+  Also see `c:Ecto.Repo.delete!/2`.
+  """
+  @callback delete!(struct_or_changeset :: Ecto.Schema.t | Ecto.Changeset.t) :: Ecto.Schema.t | no_return
+
+
+
+  @doc """
+  Deletes all entries of the model
+
+  Returns a tuple containing the number of items deleted. Also see `c:Ecto.Repo.delete_all/2`.
+
+  ## Example
+
+  ```
+  Post.delete_all
+  # => {34, nil}
+  ```
+  """
+  @callback delete_all :: {integer, nil | [term]} | no_return
 end
 
