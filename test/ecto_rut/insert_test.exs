@@ -6,12 +6,12 @@ defmodule Ecto.Rut.Test.Insert do
   alias Ecto.Rut.TestProject.Post
 
 
-  def call(method, arg) do
-    apply(Post, method, [arg])
-  end
-
   setup do
     TestProject.Helpers.cleanup
+  end
+
+  def call(method, arg) do
+    apply(Post, method, [arg])
   end
 
 

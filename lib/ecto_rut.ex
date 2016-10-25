@@ -135,36 +135,24 @@ defmodule Ecto.Rut do
 
       # Update and Update!
 
-      def update(%{__struct__: @model} = struct) do
-        update(struct, nil)
-      end
+      Enum.each [:update, :update!], fn method ->
+        def unquote(method)(%{__struct__: Ecto.Changeset} = changeset) do
+          call(unquote(method), [changeset])
+        end
 
-      def update!(%{__struct__: @model} = struct) do
-        update!(struct, nil)
-      end
+        def unquote(method)(%{__struct__: @model} = struct, new \\ nil) do
+          [struct, map] =
+            cond do
+              is_nil(new)               -> [get!(struct.id), Map.from_struct(struct)]
+              ExUtils.is_struct?(new)   -> [struct, Map.from_struct(new)]
+              ExUtils.is_pure_map?(new) -> [struct, new]
+              Keyword.keyword?(new)     -> [struct, ExUtils.Keyword.to_map(new)]
+            end
 
-      def update(%{__struct__: @model} = struct, new) do
-        [struct, map] = argument_for_update(struct, new)
-
-        struct
-        |> changeset(map)
-        |> update
-      end
-
-      def update!(%{__struct__: @model} = struct, new) do
-        [struct, map] = argument_for_update(struct, new)
-
-        struct
-        |> changeset(map)
-        |> update!
-      end
-
-      def update(%{__struct__: Ecto.Changeset} = changeset) do
-        call(:update, [changeset])
-      end
-
-      def update!(%{__struct__: Ecto.Changeset} = changeset) do
-        call(:update!, [changeset])
+          struct
+          |> changeset(map)
+          |> unquote(method)()
+        end
       end
 
 
@@ -173,20 +161,6 @@ defmodule Ecto.Rut do
 
       defp call(method, args \\ []) do
         apply(@repo, method, args)
-      end
-
-      defp to_map(keyword) do
-        Enum.into(keyword, %{})
-      end
-
-      defp argument_for_update(struct, new) do
-        [struct, map] =
-          cond do
-            ExUtils.is_pure_map?(new) -> [struct, new]
-            Keyword.keyword?(new)     -> [struct, to_map(new)]
-            ExUtils.is_struct?(new)   -> [struct, Map.from_struct(new)]
-            is_nil(new)               -> [get!(struct.id), Map.from_struct(struct)]
-          end
       end
 
     end

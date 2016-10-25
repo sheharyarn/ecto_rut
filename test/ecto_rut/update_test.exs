@@ -16,44 +16,52 @@ defmodule Ecto.Rut.Test.Update do
     [post: post, old_name: old_name, new_name: new_name]
   end
 
-
-  test "update works with modified struct", context do
-    post = context.post
-    assert post.title == context.old_name
-    assert post.__struct__ == Post
-
-    post = %{ post | title: context.new_name }
-    post = Post.update!(post)
-
-    assert (Repo.get!(Post, post.id)).title == context.new_name
+  def call(method, args) do
+    apply(Post, method, args)
   end
 
 
-  test "update works with keyword lists", context do
-    post = context.post
-    assert post.title == context.old_name
+  Enum.each [:update, :update!], fn method ->
+    @method method
 
-    Post.update(post, [title: context.new_name])
-    assert (Repo.get!(Post, post.id)).title == context.new_name
+
+    test "#{@method} works with modified struct", context do
+      post = context.post
+      assert post.title == context.old_name
+      assert post.__struct__ == Post
+
+      post = %{ post | title: context.new_name }
+      call(@method, [post])
+      assert (Repo.get!(Post, post.id)).title == context.new_name
+    end
+
+
+    test "#{@method} works with keyword lists", context do
+      post = context.post
+      assert post.title == context.old_name
+
+      call(@method, [post, [title: context.new_name]])
+      assert (Repo.get!(Post, post.id)).title == context.new_name
+    end
+
+
+    test "#{@method} works with maps", context do
+      post = context.post
+      assert post.title == context.old_name
+
+      call(@method, [post, %{title: context.new_name}])
+      assert (Repo.get!(Post, post.id)).title == context.new_name
+    end
+
+
+    test "#{@method} works with changesets", context do
+      post = context.post
+      assert post.title == context.old_name
+
+      cset = Post.changeset(post, %{title: context.new_name})
+      call(@method, [cset])
+      assert (Repo.get!(Post, post.id)).title == context.new_name
+    end
   end
 
-
-  test "update works with maps", context do
-    post = context.post
-    assert post.title == context.old_name
-
-    Post.update(post, %{title: context.new_name})
-
-    assert (Repo.get!(Post, post.id)).title == context.new_name
-  end
-
-  test "update works with changesets", context do
-    post = context.post
-    assert post.title == context.old_name
-
-    cset = Post.changeset(post, %{title: context.new_name})
-    Post.update(cset)
-
-    assert (Repo.get!(Post, post.id)).title == context.new_name
-  end
 end
