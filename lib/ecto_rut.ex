@@ -342,5 +342,72 @@ defmodule Ecto.Rut do
   Also see `c:Ecto.Repo.insert!/2`.
   """
   @callback insert!(struct :: Ecto.Schema.t | Ecto.Changeset.t | Map.t | Keyword.t) :: Ecto.Schema.t | no_return
+
+
+
+  @doc """
+  Updates the database record using a modified struct or a changeset.
+
+  This method only accepts one argument; either a modified struct or a changeset. It uses the
+  struct or changeset's primary key to update the correct record in the database. If no primary
+  key is found, `Ecto.NoPrimaryKeyFieldError` will be raised.
+
+  Returns `{:ok, struct}` if the struct has been successfully updated or `{:error, changeset}`
+  if there was a validation or a known constraint error.
+
+  ## Requires a changeset method
+
+  This method depends on your model exporting a public changeset function. [See this for more
+  details](#module-export-changeset).
+
+  ## Example
+
+  ```
+  post = Post.get_by!(id: 3)
+  post = %{ post | title: "Updated post title"}
+
+  Post.update(post)
+  ```
+  """
+  @callback update(modified_struct_or_changeset :: Ecto.Schema.t | Ecto.Changeset.t) :: {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
+
+
+
+  @doc """
+  Updates the database record using a Keyword list or a Map and a Struct for comparison.
+
+  This method accepts two arguments, the first being the struct that has to be updated, and
+  the second being a Map or a Keyword List of the new values.
+
+  Returns `{:ok, struct}` if the struct has been successfully updated or `{:error, changeset}`
+  if there was a validation or a known constraint error. Also see `c:Ecto.Repo.update/2`.
+
+  ## Requires a changeset method
+
+  This method depends on your model exporting a public changeset function. [See this for more
+  details](#module-export-changeset).
+
+  ## Example
+
+  ```
+  post = Post.get_by!(id: 3)
+  Post.update(post, title: "New post title", author_id: new_author_id)
+  ```
+  """
+  @callback update(struct :: Ecto.Schema.t, params :: Map.t | Keyword.t) :: {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
+
+
+
+  @doc """
+  Similar to `c:update/1` but returns the struct or raises if the changeset is invalid.
+  """
+  @callback update!(modified_struct_or_changeset :: Ecto.Schema.t | Ecto.Changeset.t) :: Ecto.Schema.t | no_return
+
+
+
+  @doc """
+  Similar to `c:update/2` but returns the struct or raises if the changeset is invalid.
+  """
+  @callback update!(struct :: Ecto.Schema.t, params :: Map.t | Keyword.t) :: Ecto.Schema.t | no_return
 end
 
