@@ -117,6 +117,12 @@ defmodule Ecto.Rut do
           call(unquote(method), [changeset])
         end
 
+        def unquote(method)(%{__struct__: @model} = struct) do
+          struct
+          |> Map.from_struct
+          |> unquote(method)()
+        end
+
         def unquote(method)(map) when is_map(map) do
           @model
           |> Kernel.struct

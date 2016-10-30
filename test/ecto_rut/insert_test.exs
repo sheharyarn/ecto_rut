@@ -36,6 +36,12 @@ defmodule Ecto.Rut.Test.Insert do
       call(@method, cset)
       assert length(Repo.all(Post)) == 1
     end
+
+    test "#{@method} works with structs" do
+      assert length(Repo.all(Post)) == 0
+      call(@method, %Post{title: "Elixir: Intro", categories: ~w(elixir programming), published: true})
+      assert length(Repo.all(Post)) == 1
+    end
   end
 
 end
