@@ -83,6 +83,20 @@ defmodule Ecto.Rut do
     # Other Stuff
   end
   ```
+
+
+  ## Export Changeset
+
+  Methods like `c:insert/1` or `c:update/2` depend on your model exporting a public function called
+  `changeset(struct, params)` with all your desired validations and constraints applied to
+  the casted struct.
+
+  Ecto.Rut uses this function to convert maps, keyword lists and other types into `Ecto.Changeset`,
+  before updating or inserting them into the database.
+
+  Phoenix projects generate them for your models automatically, but for other Elixir projects,
+  you can [see an example here](https://hexdocs.pm/ecto/Ecto.Changeset.html).
+
   """
 
   @doc false
@@ -286,5 +300,47 @@ defmodule Ecto.Rut do
   ```
   """
   @callback delete_all :: {integer, nil | [term]} | no_return
+
+
+
+  @doc """
+  Inserts a new record (Can be a struct, changeset, keyword list or a map).
+
+  In case a changeset is given, the changes in the changeset are merges with the struct fields
+  and all of them are sent to the database.
+
+  In case a struct, keyword list or a map is given, they are first converted to a changeset, with
+  all non-nil fields as part of the changeset and inserted into the database if it's valid.
+
+  Returns a {:ok, struct} if it was successfully inserted, or a {:error, changeset} is there was a
+  validation or a known constraint error.
+
+  Also see `c:Ecto.Repo.insert/2`.
+
+  ## Requires a changeset method
+
+  This method depends on your model exporting a public changeset function. [See this for more
+  details](#module-export-changeset).
+
+  ## Example
+
+  ```
+  Post.insert(title: "Introduction to Elixir")
+  Post.insert(%{title: "Building your first Phoenix app"})
+  Post.insert(%Post{title: "Concurrency in Elixir", categories: ["programming", "elixir"]})
+
+  Post.changeset(%Post{}, %{title: "Ecto for dummies"}) |> Post.insert
+  ```
+  """
+  @callback insert(struct :: Ecto.Schema.t | Ecto.Changeset.t | Map.t | Keyword.t) :: {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
+
+
+
+  @doc """
+  Similar to `c:insert/1` but returns the struct or raises if the changeset is invalid.
+
+  Also see `c:Ecto.Repo.insert!/2`.
+  """
+  @callback insert!(struct :: Ecto.Schema.t | Ecto.Changeset.t | Map.t | Keyword.t) :: Ecto.Schema.t | no_return
 end
 
