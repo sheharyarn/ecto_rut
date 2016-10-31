@@ -113,7 +113,7 @@ See the [Configuration Section][docs-config] in HexDocs for more details.
 
 `Ecto.Rut` has been designed for simple use cases. It's not meant for advanced queries and
 operations on your Database. Ecto.Rut is supposed to do only simple tasks such as getting,
-updating or deleting record. For any complex queries, you should use the original `Ecto.Repo`
+updating or deleting records. For any complex queries, you should use the original `Ecto.Repo`
 methods.
 
 You shouldn't also let Ecto.Rut handicap you; Ideally, you should understand how Ecto.Repo
@@ -133,8 +133,6 @@ or involve yourself with changesets everytime when you've already defined them i
 
 ### [All][fun-all]
 
-> Get all records of a model
-
 ```elixir
 iex> Post.all
 [%Post{__meta__: #Ecto.Schema.Metadata<:loaded, "posts">, id: 1, title: "Post 1"},
@@ -144,8 +142,6 @@ iex> Post.all
 
 
 ### [Get][fun-get]
-
-> Get a record by its primary key
 
 ```elixir
 iex> Post.get(2).title
@@ -157,8 +153,6 @@ Also see [`get!/1`][fun-get!]
 
 ### [Get By][fun-get_by]
 
-> Get a record by its attribute
-
 ```elixir
 Post.get_by(published_date: "2014-10-22")
 ```
@@ -167,8 +161,6 @@ Also see [`get_by!/1`][fun-get_by!]
 
 
 ### [Insert][fun-insert]
-
-> Insert a new document
 
 You can insert Changesets, Structs, Keyword Lists or Maps. When Structs, Keyword Lists or
 Maps are given, they'll be first converted into a changeset (as defined by your model) and
@@ -191,8 +183,6 @@ Also see [`insert!/1`][fun-insert!]
 
 
 ### [Update][fun-update]
-
-> Update an existing record
 
 There are two variations of the update method; [`update/1`][fun-update] and
 [`update/2`][fun-update2]. For the first, you can either pass a changeset (which would be
@@ -218,8 +208,6 @@ Also see [`update!/1`][fun-update!] and [`update!/2`][fun-update2!]
 
 ### [Delete][fun-delete]
 
-> Delete an existing record
-
 ```elixir
 post = Post.get_by(id: 9)
 Post.delete(post)
@@ -229,8 +217,6 @@ Also see [`delete!/1`][fun-delete!]
 
 
 ### [Delete All][fun-delete_all]
-
-> Deletes all records of a model
 
 ```elixir
 Post.delete_all
