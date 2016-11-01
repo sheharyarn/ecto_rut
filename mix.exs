@@ -34,7 +34,8 @@ defmodule Ecto.Rut.Mixfile do
       {:ecto,     "~> 2.0.0"},
       {:ex_utils, "~> 0.1.4"},
       {:postgrex, "~> 0.12.0", only: :test},
-      {:ex_doc,   ">= 0.0.0",  only: :dev}
+      {:ex_doc,   ">= 0.0.0",  only: :dev},
+      {:inch_ex,  ">= 0.0.0",  only: :docs}
     ]
   end
 
