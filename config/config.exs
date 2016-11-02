@@ -4,6 +4,11 @@
 use Mix.Config
 
 
+# Logger
+config :logger, level: :info
+
+
+# Ecto for Tests
 config :ecto_rut,
   ecto_repos: [Ecto.Rut.TestProject.Repo]
 
@@ -15,14 +20,13 @@ config :ecto_rut, Ecto.Rut.TestProject.Repo,
   password: "postgres",
   hostname: "localhost"
 
-config :logger, level: :info
+
+# Ecto for Travis CI
+if System.get_env("TRAVIS") == "true" do
+  import_config "travis_ci.exs"
+end
 
 
-# It is also possible to import configuration files, relative to this
-# directory. For example, you can emulate configuration per environment
-# by uncommenting the line below and defining dev.exs, test.exs and such.
-# Configuration from the imported file will override the ones defined
-# here (which is why it is important to import them last).
-#
-#     import_config "#{Mix.env}.exs"
-#
+# Other Environments
+# import_config "#{Mix.env}.exs"
+

@@ -6,9 +6,6 @@ otp_release:
 sudo: false
 services:
   - postgresql
-before_script:
-  - cp config/travis_ci.exs config/config.exs
-  - mix deps.get --only test
 script:
   - mix test
 after_script:
