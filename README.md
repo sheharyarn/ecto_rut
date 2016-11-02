@@ -1,6 +1,8 @@
 [![logo][logo]][docs]
 =====================
 
+[![Build Status][shield-travis]][travis-ci]
+[![Coverage Status][shield-inch]][inch-ci]
 [![Version][shield-version]][hexpm]
 [![License][shield-license]][hexpm]
 <!--[![Downloads][shield-downloads]][hexpm] -->
@@ -285,12 +287,16 @@ This package is available as open source under the terms of the [MIT License][li
 
 
   [logo]:             http://i.imgur.com/4CYuLpo.png
-  [shield-version]:   https://img.shields.io/hexpm/v/ecto_rut.svg?maxAge=2592000?style=flat-square
-  [shield-license]:   https://img.shields.io/hexpm/l/ecto_rut.svg?maxAge=2592000?style=flat-square
-  [shield-downloads]: https://img.shields.io/hexpm/dt/ecto_rut.svg?maxAge=2592000?style=flat-square
+  [shield-version]:   https://img.shields.io/hexpm/v/ecto_rut.svg
+  [shield-license]:   https://img.shields.io/hexpm/l/ecto_rut.svg
+  [shield-downloads]: https://img.shields.io/hexpm/dt/ecto_rut.svg
+  [shield-travis]:    https://img.shields.io/travis/sheharyarn/ecto_rut/master.svg
+  [shield-inch]:      http://inch-ci.org/github/sheharyarn/ecto_rut.svg?branch=master
 
   [license]:          http://opensource.org/licenses/MIT
   [phoenix]:          https://github.com/phoenixframework/phoenix
+  [travis-ci]:        https://travis-ci.org/sheharyarn/ecto_rut
+  [inch-ci]:          http://inch-ci.org/github/sheharyarn/ecto_rut
   [jose-concern]:     https://elixirforum.com/t/need-code-review/1770/5?u=sheharyarn
 
   [github-coverage]:  https://github.com/sheharyarn/ecto_rut#method-coverage
