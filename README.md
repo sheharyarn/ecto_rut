@@ -267,7 +267,8 @@ Post.delete_all
  - [x] Write Documentation
  - [ ] Cover all main `Ecto.Repo` methods
  - [x] Allow explicitly passing Application and Repo modules to the `use Ecto.Rut` statement
- - [ ] Introduce new wrapper methods that accept direct arguments (Such as `Post.delete_by_id(3)`)
+ - [ ] Add support for preloading with existing methods
+ - [ ] Introduce new wrapper methods that accept direct arguments (Such as `delete_by_id(3)` and `find_or_create(obj)`)
 
 
 
