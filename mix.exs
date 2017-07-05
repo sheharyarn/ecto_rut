@@ -26,7 +26,7 @@ defmodule Ecto.Rut.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :ecto]]
+    [applications: [:logger, :ecto, :ex_utils]]
   end
 
   defp deps do
