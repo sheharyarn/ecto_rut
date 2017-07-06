@@ -270,6 +270,7 @@ Post.delete_all
  - [ ] Add support for preloading with existing methods
  - [ ] Introduce new wrapper and helper methods that do not exist in Ecto, such as:
     - [ ] `Model.count`
+    - [ ] `Model.first` and `Model.last`
     - [ ] `Model.find_or_create(obj)`
     - [ ] Methods that accept direct arguments (E.g. `delete_by_id(3)`)
 
