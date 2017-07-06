@@ -107,6 +107,15 @@ defmodule Ecto.Rut do
       @repo   opts[:repo]  || @app |> Module.concat("Repo")
 
 
+      # Default Changeset method
+
+      def changeset(struct, params) do
+        Ecto.Changeset.cast(struct, params, [])
+      end
+
+      defoverridable [changeset: 2]
+
+
 
       # Simple Methods
 

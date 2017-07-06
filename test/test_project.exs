@@ -29,6 +29,14 @@ defmodule Ecto.Rut.TestProject do
   end
 
 
+  # Empty Model without changeset method
+  # Should compile!
+
+  defmodule EmptyModel do
+    use Ecto.Rut
+  end
+
+
   ## Migration for our Test Model
 
   defmodule Migration do
