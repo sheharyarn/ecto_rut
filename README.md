@@ -59,8 +59,9 @@ $ mix deps.get
 
 ### Phoenix Projects
 
-If you have an app built in [Phoenix Framework][phoenix], just add `use Ecto.Rut` in the `models` method
-in `web/web.ex`:
+If you have an app built in [Phoenix Framework][phoenix], just add `use Ecto.Rut`
+in the `models` method in `web/web.ex` or anywhere else you have defined your
+basic Schema structure:
 
 ```elixir
 # web/web.ex
@@ -68,7 +69,7 @@ in `web/web.ex`:
 def model do
   quote do
     use Ecto.Schema
-    use Ecto.Rut
+    use Ecto.Rut, repo: YourApp.Repo
 
     # Other stuff...
   end
@@ -76,7 +77,8 @@ end
 ```
 
 That's it! `Ecto.Rut` will automatically be loaded in all of your models. You can now relax!
-
+If you don't have a central macro defined for your Schema, take a look at this example:
+[**Repo.Schema**][repo-schema-eg].
 
 ### Other Ecto Projects
 
@@ -137,9 +139,9 @@ or involve yourself with changesets everytime when you've already defined them i
 
 ```elixir
 iex> Post.all
-[%Post{__meta__: #Ecto.Schema.Metadata<:loaded, "posts">, id: 1, title: "Post 1"},
- %Post{__meta__: #Ecto.Schema.Metadata<:loaded, "posts">, id: 2, title: "Post 2"},
- %Post{__meta__: #Ecto.Schema.Metadata<:loaded, "posts">, id: 3, title: "Post 3"}]
+[%Post{id: 1, title: "Post 1"},
+ %Post{id: 2, title: "Post 2"},
+ %Post{id: 3, title: "Post 3"}]
 ```
 
 
@@ -306,6 +308,7 @@ This package is available as open source under the terms of the [MIT License][li
 
   [github-coverage]:  https://github.com/sheharyarn/ecto_rut#method-coverage
   [github-fork]:      https://github.com/sheharyarn/ecto_rut/fork
+  [repo-schema-eg]:   https://github.com/sheharyarn/ztd/blob/master/lib/ztd/repo/schema.ex
 
   [hexpm]:            https://hex.pm/packages/ecto_rut
   [docs]:             https://hexdocs.pm/ecto_rut/Ecto.Rut.html
