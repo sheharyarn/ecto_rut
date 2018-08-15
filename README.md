@@ -76,8 +76,8 @@ def model do
 end
 ```
 
-That's it! `Ecto.Rut` will automatically be loaded in all of your models. You can now relax!
-If you don't have a central macro defined for your Schema, take a look at this example:
+That's it! `Ecto.Rut` will automatically be loaded in all of your models. If you don't
+have a central macro defined for your Schema, take a look at this example:
 [**Repo.Schema**][repo-schema-eg].
 
 ### Other Ecto Projects
