@@ -88,7 +88,7 @@ you!?), you'll have to manually add `use Ecto.Rut`:
 ```elixir
 defmodule YourApp.Post do
   use Ecto.Schema
-  use Ecto.Rut
+  use Ecto.Rut, repo: YourApp.Repo
 
   # Schema, Changeset and other stuff...
 end
