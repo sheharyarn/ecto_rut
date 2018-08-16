@@ -1,4 +1,4 @@
-[![logo][logo]][docs]
+[<img src='media/logo.png' width='400px' />][docs]
 =====================
 
 [![Build Status][shield-travis]][travis-ci]
@@ -293,7 +293,7 @@ This package is available as open source under the terms of the [MIT License][li
 
 
 
-  [logo]:             http://i.imgur.com/4CYuLpo.png
+  [logo]:             media/logo.png
   [shield-version]:   https://img.shields.io/hexpm/v/ecto_rut.svg
   [shield-license]:   https://img.shields.io/hexpm/l/ecto_rut.svg
   [shield-downloads]: https://img.shields.io/hexpm/dt/ecto_rut.svg
